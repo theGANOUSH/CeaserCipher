@@ -179,10 +179,30 @@ namespace CeaserCipher
         
         static void Main(string[] args)
         {
-            Console.WriteLine(let2num('a'));
+
+            char test = 'e';
+            String test2 = "myxqbkdevkdsyxc yx mywzvodsxq dro ohkw!";
+            String test3 = "kdvnhoolvixq";
+            double[] test4 = { 1, 3, 5, 7, 11 };
+
+            Console.WriteLine(let2num(test));
             Console.WriteLine(num2let(25));
-            Console.WriteLine(shift(3, 'n'));
+            Console.WriteLine(shift(3, test));
             Console.WriteLine(encode(3, "Haskellisfun!"));
+           
+
+            Console.WriteLine(num2let(let2num(test)));
+			Console.WriteLine(shift(3, test));
+			Console.WriteLine(encode(3, test2));
+			Console.WriteLine(decode(3, test3));
+			Console.WriteLine(count('l', test2));
+			Console.WriteLine(percent(2, 12));
+			Console.WriteLine(freqs(test2));
+			Console.WriteLine(rotate(3, freqs(test2)));
+			Console.WriteLine(chiSqr(freqs(test2)));
+			Console.WriteLine(position(5, test4));	
+			Console.WriteLine(crack(encode(3, test2)));
+
             Console.WriteLine(crack("myxqbkdevkdsyxc yx mywzvodsxq dro ohkw!"));
 
 
