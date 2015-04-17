@@ -14,6 +14,7 @@ namespace CeaserCipher
         static int let2num (char c)
         {
             int num = (int)(c - 'a');
+
             if(num < 0 || num > 25)
             {
                 return (int)c;
@@ -38,6 +39,7 @@ namespace CeaserCipher
             if(c >= 'a' && c <= 'z')
             {
                 int cNum = (let2num(c) + shiftAmt) % 26;
+
                 if(cNum < 0)
                 {
                     cNum += 26;
@@ -56,7 +58,7 @@ namespace CeaserCipher
 
             for(int i = 0; i < str.Length; i++)
             {
-                cipherText.Append( shift(shiftAmt, str[i]));
+                cipherText.Append(shift(shiftAmt, str[i]));
             }
 
             return cipherText.ToString();
@@ -106,21 +108,16 @@ namespace CeaserCipher
         
         static double[] rotate(int n, double[] lFreqs)
         {
-            int offset = (lFreqs.Length - n) % lFreqs.Length;
-            int j;
+            double[] demo = new double[lFreqs.Length];
 
-            if(offset > 0)
+            for (int i = 0; i < lFreqs.Length - 1; i++)
             {
-                double[] clone = (double[])lFreqs.Clone();
-
-                for(int i = 0; i < lFreqs.Length - 1; i++)
-                {
-                    j = (i + (lFreqs.Length - offset)) % lFreqs.Length;
-                    lFreqs[i] = clone[i];
-                }
-                
+                demo[i] = lFreqs[i + 1];
             }
-            return lFreqs;
+
+            demo[demo.Length - 1] = lFreqs[0];
+
+            return demo;
         }
 
         static double chiSqr(double[] of)
@@ -180,32 +177,9 @@ namespace CeaserCipher
         static void Main(string[] args)
         {
 
-            char test = 'e';
-            String test2 = "myxqbkdevkdsyxc yx mywzvodsxq dro ohkw!";
-            String test3 = "kdvnhoolvixq";
-            double[] test4 = { 1, 3, 5, 7, 11 };
+            String test5 = "myxqbkdevkdsyxc yx mywzvodsxq dro ohkw!";
 
-            Console.WriteLine(let2num(test));
-            Console.WriteLine(num2let(25));
-            Console.WriteLine(shift(3, test));
-            Console.WriteLine(encode(3, "Haskellisfun!"));
-           
-
-            Console.WriteLine(num2let(let2num(test)));
-			Console.WriteLine(shift(3, test));
-			Console.WriteLine(encode(3, test2));
-			Console.WriteLine(decode(3, test3));
-			Console.WriteLine(count('l', test2));
-			Console.WriteLine(percent(2, 12));
-			Console.WriteLine(freqs(test2));
-			Console.WriteLine(rotate(3, freqs(test2)));
-			Console.WriteLine(chiSqr(freqs(test2)));
-			Console.WriteLine(position(5, test4));	
-			Console.WriteLine(crack(encode(3, test2)));
-
-            Console.WriteLine(crack("myxqbkdevkdsyxc yx mywzvodsxq dro ohkw!"));
-
-
+			Console.WriteLine(crack(test5));
 
             Console.Read();
             
